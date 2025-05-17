@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:marakzia_task/model/branch_model.dart';
+import 'package:marakzia_task/model/branch_list_model.dart';
 
 part 'select_branch_state.freezed.dart';
 

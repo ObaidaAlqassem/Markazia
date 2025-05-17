@@ -7,7 +7,7 @@ import 'package:marakzia_task/common/utilities/app_color.dart';
 import 'package:marakzia_task/common/widgets/custom_appbar.dart';
 import 'package:marakzia_task/common/widgets/custom_button.dart';
 import 'package:marakzia_task/common/widgets/drop_down_search.dart';
-import 'package:marakzia_task/model/branch_model.dart';
+import 'package:marakzia_task/model/branch_list_model.dart';
 import 'package:marakzia_task/view/select_branch/provider/select_branch_provider.dart';
 
 class SelectBranchView extends ConsumerWidget {
@@ -37,10 +37,12 @@ class SelectBranchView extends ConsumerWidget {
                 ),
               ),
             )
-          : const SizedBox(),
+          : const Center(
+              child: CircularProgressIndicator(),
+            ),
       floatingActionButton: CustomButton(
-        onPressed: () => notifier.onClickSignIn(),
-        buttonText: 'Sign In',
+        onPressed: () => notifier.onConfirmSelectedBranch(),
+        buttonText: 'Confirm',
       ),
     );
   }

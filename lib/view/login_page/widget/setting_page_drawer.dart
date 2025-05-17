@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marakzia_task/common/utilities/app_assets.dart';
 import 'package:marakzia_task/common/utilities/app_color.dart';
-import 'package:marakzia_task/view/app_setting/widget/drawer_menu_widget.dart';
+import 'package:marakzia_task/view/login_page/widget/drawer_menu_widget.dart';
 
 class SettingPageDrawer extends StatelessWidget {
   const SettingPageDrawer({super.key});

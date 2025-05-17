@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:marakzia_task/common/storage/app_storage.dart';
 import 'package:marakzia_task/model/products_model.dart';
 import 'package:marakzia_task/services/api/apt_path.dart';
 import 'package:marakzia_task/services/api/extensions/api_exception.dart';
@@ -77,6 +78,11 @@ class BaseService {
   }) async {
     Response<dynamic>? response;
     dio = createDio();
+    final accessToken =
+        await AppStorage.getData(key: SecurePreferencesKeys.accessToken);
+    if (accessToken.isNotEmpty) {
+      dio.options.headers['authorization'] = 'Bearer $accessToken';
+    }
     try {
       final baseOptions = dio.options;
       baseOptions.baseUrl = APIPath.baseURL;

@@ -3,7 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marakzia_task/common/utilities/app_color.dart';
 import 'package:marakzia_task/common/widgets/custom_appbar.dart';
 import 'package:marakzia_task/common/widgets/custom_button.dart';
-import 'package:marakzia_task/view/app_setting/widget/setting_page_drawer.dart';
+
+import '../widget/setting_page_drawer.dart';
 
 class AppSettingView extends StatefulWidget {
   const AppSettingView({super.key});
