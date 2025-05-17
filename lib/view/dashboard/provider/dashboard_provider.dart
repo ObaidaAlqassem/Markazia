@@ -2,10 +2,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marakzia_task/view/dashboard/model/service_menu_model.dart';
 
 final dashboardProvider = Provider<DashboardNotifier>((ref) {
-  return DashboardNotifier();
+  return DashboardNotifier(ref);
 });
 
 class DashboardNotifier {
+  final Ref ref;
+
+  DashboardNotifier(this.ref);
+
   final serviceMenuList = [
     ServiceMenuModel(
       serviceMenuId: 1,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:marakzia_task/common/extension/context_extensions.dart';
-import 'package:marakzia_task/common/utilities/app_color.dart';
 import 'package:marakzia_task/common/utilities/app_theme.dart';
+import 'package:marakzia_task/generated/l10n.dart';
 import 'package:marakzia_task/routes/app_router.dart';
 
 Future<void> main() async {
@@ -37,6 +38,13 @@ class MyApp extends HookConsumerWidget {
         initialRoute: AppRouter.initialRoute,
         navigatorKey: AppRouter.navigatorKey,
         onGenerateRoute: AppRouter.generateRoute,
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
           return UnFocusWidget(
