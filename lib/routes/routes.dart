@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class Routes {
   const Routes._();
 
-  static const String productsScreen = 'productsScreen';
-  static const String productsDetailsScreen = 'productsDetailsScreen';
+  static const String splashScreen = 'splashScreen';
+  static const String logInScreen = 'logInScreen';
+  static const String selectBranchScreen = 'selectBranchScreen';
+  static const String appSettingScreen = 'appSettingScreen';
 }

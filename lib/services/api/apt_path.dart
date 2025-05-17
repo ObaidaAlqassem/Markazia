@@ -1,6 +1,7 @@
 class APIPath {
   APIPath._();
 
-  static const baseURL = 'https://dummyjson.com/';
-  static const productsList = 'products/';
+  static const baseURL = 'https://ecashiertest.markaziaapis.com/api/';
+  static const branchList = 'Branch/GetBranch/';
+  static const logIn = 'Users/loginToken';
 }

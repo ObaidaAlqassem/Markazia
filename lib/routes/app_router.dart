@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:marakzia_task/model/products_model.dart';
 import 'package:marakzia_task/routes/routes.dart';
-import 'package:marakzia_task/view/products/product_details.dart';
-import 'package:marakzia_task/view/products/products_view.dart';
+import 'package:marakzia_task/view/app_setting/view/app_setting_view.dart';
+import 'package:marakzia_task/view/login_page/view/login_view.dart';
+import 'package:marakzia_task/view/select_branch/view/select_branch_view.dart';
+import 'package:marakzia_task/view/splash_screen/splash_screen.dart';
 
 class AppRouter {
   const AppRouter._();
@@ -11,21 +12,28 @@ class AppRouter {
       GlobalKey<NavigatorState>();
 
   /// The name of the route that loads on app startup
-  static const String initialRoute = Routes.productsScreen;
+  static const String initialRoute = Routes.logInScreen;
 
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.productsScreen:
+      case Routes.splashScreen:
         return _setPage(
-          page: const ProductsView(),
+          page: const SplashScreenView(),
           settings: settings,
         );
-      case Routes.productsDetailsScreen:
-        final arguments = settings.arguments! as ({Product product});
+      case Routes.selectBranchScreen:
         return _setPage(
-          page: ProductDetails(
-            product: arguments.product,
-          ),
+          page: const SelectBranchView(),
+          settings: settings,
+        );
+      case Routes.logInScreen:
+        return _setPage(
+          page: const LogInView(),
+          settings: settings,
+        );
+      case Routes.appSettingScreen:
+        return _setPage(
+          page: const AppSettingView(),
           settings: settings,
         );
       default:
