@@ -5,4 +5,5 @@ class APIPath {
   static const branchList = 'Branch/GetBranch/';
   static const serviceDetails = 'Kiosk/GetSettingsBybranchId';
   static const logIn = 'Users/loginToken';
+  static const updateService = 'Kiosk/UpdateBranchServiceStatus';
 }

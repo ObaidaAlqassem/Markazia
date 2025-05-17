@@ -1,4 +1,10 @@
+import 'dart:ui';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:marakzia_task/common/app_setting/provider/app_setting_provider.dart';
+import 'package:marakzia_task/common/storage/app_storage.dart';
+import 'package:marakzia_task/routes/app_router.dart';
+import 'package:marakzia_task/routes/routes.dart';
 import 'package:marakzia_task/view/dashboard/model/service_menu_model.dart';
 
 final dashboardProvider = Provider<DashboardNotifier>((ref) {
@@ -25,15 +31,23 @@ class DashboardNotifier {
     ),
   ];
 
-  void onClickOnServiceMenu({
+  Future<void> onClickOnServiceMenu({
     required ServiceMenuModel serviceMenu,
-  }) {
+  }) async {
     switch (serviceMenu.serviceMenuId) {
       case 1:
+        await AppRouter.pushNamed(
+          Routes.serviceControlScreen,
+        );
         return;
       case 2:
+        await AppRouter.pushNamed(
+          Routes.selectBranchScreen,
+        );
         return;
       case 3:
+        AppStorage.deleteData();
+        AppRouter.startNewRoute(Routes.selectBranchScreen);
         return;
     }
   }

@@ -9,10 +9,10 @@ import 'package:marakzia_task/services/api/http/http_service.dart';
 import 'package:marakzia_task/view/select_branch/state/select_branch_state.dart';
 
 final selectBranchProvider =
-    NotifierProvider<SelectBranchNotifier, SelectBranchState>(
+    NotifierProvider.autoDispose<SelectBranchNotifier, SelectBranchState>(
         SelectBranchNotifier.new);
 
-class SelectBranchNotifier extends Notifier<SelectBranchState> {
+class SelectBranchNotifier extends AutoDisposeNotifier<SelectBranchState> {
   @override
   SelectBranchState build() {
     getBranchList();
@@ -42,8 +42,7 @@ class SelectBranchNotifier extends Notifier<SelectBranchState> {
       );
       final branchId = await AppStorage.getData(
             key: SecurePreferencesKeys.branchId,
-          ) ??
-          '';
+          ) ;
       if (branchId.isNotEmpty) {
         final branch = state.branchList.value!
             .where(
@@ -65,7 +64,14 @@ class SelectBranchNotifier extends Notifier<SelectBranchState> {
         key: SecurePreferencesKeys.branchId,
         data: state.selectedBranch?.id.toString(),
       );
-      await AppRouter.pushNamed(Routes.appSettingScreen);
+      final accessToken = await AppStorage.getData(
+        key: SecurePreferencesKeys.accessToken,
+      );
+      if (accessToken.isEmpty) {
+        await AppRouter.pushNamed(Routes.appSettingScreen);
+      } else {
+        await AppRouter.startNewRoute(Routes.dashBoardView);
+      }
     }
   }
 }

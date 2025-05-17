@@ -4,6 +4,7 @@ import 'package:marakzia_task/view/login_page/view/app_setting_view.dart';
 import 'package:marakzia_task/view/dashboard/view/dashbaord_view.dart';
 import 'package:marakzia_task/view/login_page/view/login_view.dart';
 import 'package:marakzia_task/view/select_branch/view/select_branch_view.dart';
+import 'package:marakzia_task/view/service_controls/view/service_control_view.dart';
 import 'package:marakzia_task/view/splash_screen/view/splash_screen.dart';
 
 class AppRouter {
@@ -40,6 +41,11 @@ class AppRouter {
       case Routes.appSettingScreen:
         return _setPage(
           page: const AppSettingView(),
+          settings: settings,
+        );
+        case Routes.serviceControlScreen:
+        return _setPage(
+          page: const ServiceControlView(),
           settings: settings,
         );
       default:

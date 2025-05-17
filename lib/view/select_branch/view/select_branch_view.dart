@@ -33,6 +33,7 @@ class SelectBranchView extends ConsumerWidget {
                     onChange: (branch) => notifier.onSelectBranch(
                       selectedBranch: branch,
                     ),
+                    selectedItem: provider.selectedBranch,
                     hintText: 'Select Branch',
                   ),
                 ),

@@ -57,4 +57,28 @@ class HttpService {
       );
     }
   }
+
+  Future<Either<APIException, T?>> put<T>({
+    required String url,
+    required Function fromJsonMethod,
+    required dynamic body,
+  }) async {
+    final response = await BaseService.instance.apiRequest(
+      url: url,
+      method: ApiMethod.put,
+      content: body,
+    );
+    if (response.isRight()) {
+      final result = fromJsonMethod(
+        response.getRight(),
+      );
+      return Right(
+        result,
+      );
+    } else {
+      return Left(
+        response.getLeft(),
+      );
+    }
+  }
 }

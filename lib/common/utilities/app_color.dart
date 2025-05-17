@@ -7,4 +7,5 @@ class AppColor {
   static Color yellowColor = Colors.yellow;
   static Color errorColor = Colors.red;
   static Color greyColor = Colors.grey;
+  static Color greenColor = Colors.green;
 }

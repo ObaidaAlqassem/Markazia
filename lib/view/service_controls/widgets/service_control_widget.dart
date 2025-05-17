@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marakzia_task/common/utilities/app_color.dart';
 import 'package:marakzia_task/model/branch_list_model.dart';
+import 'package:marakzia_task/view/service_controls/provider/service_control_provider.dart';
 
 class ServiceControlWidget extends StatefulWidget {
   final ServiceModel serviceModel;
+  final ServiceControlNotifier notifier;
 
   const ServiceControlWidget({
     required this.serviceModel,
+    required this.notifier,
     super.key,
   });
 
@@ -16,10 +19,16 @@ class ServiceControlWidget extends StatefulWidget {
 }
 
 class _ServiceControlWidgetState extends State<ServiceControlWidget> {
-  void onUpdateServiceStatus() {
+  void onUpdateServiceStatus({
+    required BuildContext context,
+  }) {
     setState(() {
       widget.serviceModel.isEnabled = !(widget.serviceModel.isEnabled ?? false);
     });
+    widget.notifier.onUpdateService(
+      service: widget.serviceModel,
+      context: context,
+    );
   }
 
   @override
@@ -36,11 +45,18 @@ class _ServiceControlWidgetState extends State<ServiceControlWidget> {
         Expanded(
           child: Text(
             widget.serviceModel.nameEn ?? '',
+            style: TextStyle(
+              color: AppColor.whiteColor,
+              fontSize: 18.sp,
+            ),
           ),
         ),
         Switch(
           value: widget.serviceModel.isEnabled ?? false,
-          onChanged: (value) => onUpdateServiceStatus(),
+          activeColor: AppColor.greenColor,
+          onChanged: (value) => onUpdateServiceStatus(
+            context: context,
+          ),
         ),
       ],
     );

@@ -9,4 +9,5 @@ class Routes {
   static const String selectBranchScreen = 'selectBranchScreen';
   static const String appSettingScreen = 'appSettingScreen';
   static const String dashBoardView = 'dashboardView';
+  static const String serviceControlScreen = 'ServiceControlView';
 }

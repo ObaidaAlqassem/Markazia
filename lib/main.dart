@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:marakzia_task/common/app_setting/provider/app_setting_provider.dart';
 import 'package:marakzia_task/common/extension/context_extensions.dart';
 import 'package:marakzia_task/common/utilities/app_theme.dart';
 import 'package:marakzia_task/generated/l10n.dart';
@@ -22,6 +23,7 @@ class MyApp extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(appSettingProvider);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
@@ -38,13 +40,14 @@ class MyApp extends HookConsumerWidget {
         initialRoute: AppRouter.initialRoute,
         navigatorKey: AppRouter.navigatorKey,
         onGenerateRoute: AppRouter.generateRoute,
+        locale: ref.watch(appSettingProvider).currentLanguage,
         localizationsDelegates: const [
           S.delegate,
           GlobalCupertinoLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-        supportedLocales: S.delegate.supportedLocales,
+        supportedLocales: L10n.supportedLocales,
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
           return UnFocusWidget(

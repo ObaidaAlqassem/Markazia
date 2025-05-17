@@ -44,8 +44,11 @@ class BranchModel {
 
 @JsonSerializable()
 class ServiceModel {
+  @JsonKey(name: 'serviceId')
   final int? id;
+  @JsonKey(name: 'serviceNameEn')
   final String? nameEn;
+  @JsonKey(name: 'serviceNameAr')
   final String? nameAr;
   bool? isEnabled;
 

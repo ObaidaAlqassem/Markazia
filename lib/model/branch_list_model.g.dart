@@ -43,16 +43,16 @@ Map<String, dynamic> _$BranchModelToJson(BranchModel instance) =>
     };
 
 ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) => ServiceModel(
-      id: (json['id'] as num?)?.toInt(),
-      nameEn: json['nameEn'] as String?,
-      nameAr: json['nameAr'] as String?,
+      id: (json['serviceId'] as num?)?.toInt(),
+      nameEn: json['serviceNameEn'] as String?,
+      nameAr: json['serviceNameAr'] as String?,
       isEnabled: json['isEnabled'] as bool?,
     );
 
 Map<String, dynamic> _$ServiceModelToJson(ServiceModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'nameEn': instance.nameEn,
-      'nameAr': instance.nameAr,
+      'serviceId': instance.id,
+      'serviceNameEn': instance.nameEn,
+      'serviceNameAr': instance.nameAr,
       'isEnabled': instance.isEnabled,
     };
