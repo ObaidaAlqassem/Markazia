@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:marakzia_task/common/extension/context_extensions.dart';
+import 'package:marakzia_task/routes/app_router.dart';
+
+Future<void> main() async {
+  await ScreenUtil.ensureScreenSize();
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
+}
+
+class MyApp extends HookConsumerWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
+    return ScreenUtilInit(
+      designSize: Size(
+        context.screenWidth,
+        context.screenHeight,
+      ),
+      // designSize: ScreenUtil.defaultSize,
+      builder: (context, child) => MaterialApp(
+        title: 'Revest Task',
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        initialRoute: AppRouter.initialRoute,
+        navigatorKey: AppRouter.navigatorKey,
+        onGenerateRoute: AppRouter.generateRoute,
+        debugShowCheckedModeBanner: false,
+        builder: (context, child) {
+          return UnFocusWidget(
+            child: child!,
+          );
+        },
+      ),
+    );
+  }
+}
+
+class UnFocusWidget extends StatelessWidget {
+  const UnFocusWidget({
+    required this.child,
+    super.key,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: child,
+    );
+  }
+}
