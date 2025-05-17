@@ -3,11 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marakzia_task/common/utilities/app_assets.dart';
 import 'package:marakzia_task/common/utilities/app_color.dart';
+import 'package:marakzia_task/routes/app_router.dart';
+import 'package:marakzia_task/routes/routes.dart';
 import 'package:marakzia_task/view/login_page/widget/drawer_menu_widget.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-class SettingPageDrawer extends StatelessWidget {
+class SettingPageDrawer extends StatefulWidget {
   const SettingPageDrawer({super.key});
 
+  @override
+  State<SettingPageDrawer> createState() => _SettingPageDrawerState();
+}
+
+class _SettingPageDrawerState extends State<SettingPageDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -38,9 +46,12 @@ class SettingPageDrawer extends StatelessWidget {
             ),
           ),
 
-          const DrawerMenuWidget(
+          DrawerMenuWidget(
             menuIcon: Icons.settings,
             menuText: 'Kiosk Settings',
+            onPress: () => AppRouter.pushNamed(
+              Routes.logInScreen,
+            ),
           ),
           const Spacer(),
           // Bottom: Version Info
@@ -54,13 +65,15 @@ class SettingPageDrawer extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 4.h),
-              Text(
-                'Version 24.08.1',
-                style: TextStyle(
-                  color: AppColor.whiteColor.withAlpha(150),
-                  fontSize: 12.sp,
+              if (packageInfo?.version != null) ...[
+                Text(
+                  'Version ${packageInfo?.version}',
+                  style: TextStyle(
+                    color: AppColor.whiteColor.withAlpha(150),
+                    fontSize: 12.sp,
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
           SizedBox(
@@ -69,5 +82,18 @@ class SettingPageDrawer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  onFillAppInfo() async {
+    packageInfo = await PackageInfo.fromPlatform();
+    setState(() {});
+  }
+
+  PackageInfo? packageInfo;
+
+  @override
+  void initState() {
+    onFillAppInfo();
+    super.initState();
   }
 }

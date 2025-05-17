@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marakzia_task/common/utilities/app_color.dart';
 import 'package:marakzia_task/common/widgets/custom_appbar.dart';
 import 'package:marakzia_task/common/widgets/custom_button.dart';
+import 'package:marakzia_task/routes/app_router.dart';
 
 import '../widget/setting_page_drawer.dart';
 
@@ -71,6 +72,11 @@ class _AppSettingViewState extends State<AppSettingView> {
         ],
       ),
       endDrawer: const SettingPageDrawer(),
+      floatingActionButton: CustomButton(
+        buttonText: 'Back',
+        onPressed: () => AppRouter.pop(),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 }

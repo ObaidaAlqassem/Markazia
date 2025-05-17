@@ -7,8 +7,8 @@ class ServiceControlView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
-      body: Container(),
+        appBar: const CustomAppBar(),
+        body: Container(),
     );
   }
 }

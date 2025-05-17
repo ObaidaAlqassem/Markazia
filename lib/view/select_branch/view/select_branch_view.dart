@@ -18,6 +18,7 @@ class SelectBranchView extends ConsumerWidget {
     final provider = ref.watch(selectBranchProvider);
     final notifier = ref.read(selectBranchProvider.notifier);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: const CustomAppBar(),
       body: !provider.branchList.isLoading
           ? Form(

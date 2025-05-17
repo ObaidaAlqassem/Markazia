@@ -22,10 +22,8 @@ class SplashNotifier {
             await AppStorage.getData(key: SecurePreferencesKeys.accessToken);
         final branchId =
             await AppStorage.getData(key: SecurePreferencesKeys.branchId);
-        if (branchId.isEmpty) {
+        if (branchId.isEmpty || accessToken.isEmpty) {
           AppRouter.startNewRoute(Routes.selectBranchScreen);
-        } else if (accessToken.isEmpty) {
-          AppRouter.startNewRoute(Routes.logInScreen);
         } else {
           AppRouter.startNewRoute(Routes.dashBoardView);
         }

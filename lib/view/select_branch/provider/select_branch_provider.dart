@@ -61,11 +61,11 @@ class SelectBranchNotifier extends Notifier<SelectBranchState> {
 
   Future<void> onConfirmSelectedBranch() async {
     if (formKey.currentState!.validate()) {
-      // await AppStorage.setData(
-      //   key: SecurePreferencesKeys.branchId,
-      //   data: state.selectedBranch?.id.toString(),
-      // );
-      await AppRouter.startNewRoute(Routes.appSettingScreen);
+      await AppStorage.setData(
+        key: SecurePreferencesKeys.branchId,
+        data: state.selectedBranch?.id.toString(),
+      );
+      await AppRouter.pushNamed(Routes.appSettingScreen);
     }
   }
 }

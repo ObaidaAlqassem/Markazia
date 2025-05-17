@@ -31,9 +31,7 @@ class DrawerMenuWidget extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      onTap: () {
-        // Handle settings navigation
-      },
+      onTap: () => onPress?.call(),
     );
   }
 }
